@@ -1,2 +1,2 @@
 # Blog
-Blog Koss Federico
+Proyecto blog Koss Federico 
