@@ -1,0 +1,25 @@
+{% extends "AppBlog/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<h1 style="color:white">Página Formulario de noticias</h1>
+
+{% endblock %}
+
+{% block cuerpo %}
+
+<form action="{% url 'newsFormulario' %}" method="post">{% csrf_token %}
+    
+        <table>
+            {{ miformulario.as_table }}
+        </table>
+        <input type="submit" value="ENVIAR FORMULARIO VIA API">
+
+        
+
+</form>
+
+
+{% endblock%}
