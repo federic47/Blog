@@ -7,6 +7,8 @@ urlpatterns = [
 
 
     path('newsFormulario/', newsFormulario, name='newsFormulario'),
+    path('busquedaNews/', busquedaNews, name='busquedaNews'),
+    path('buscar/', buscar, name='buscar'),
 
     path('new/list/',NewsList.as_view(),name ='new_listar' ),
     path('new/<pk>', NewsDetalle.as_view(), name='new_detalle'),

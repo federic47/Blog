@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django .views.generic import ListView
 from django .views.generic.detail import DetailView
 from django .views.generic.edit import CreateView,UpdateView,DeleteView
@@ -29,7 +30,21 @@ def newsFormulario(request):
         miFormulario= NewsFormulario()
     return render(request,'AppBlog/newsFormulario.html', {'miFormulario': miFormulario})
 
-     
+#*******************************************************************************
+def busquedaNews(request):
+    return render(request, 'AppBlog/BusquedaNews.html') 
+
+def buscar(request):
+    if request.GET['titulo']:
+        titulo = request.GET['titulo']
+        news = News.objects.filter(titulo=titulo)
+        return render (request,'AppBlog/resultadosBusqueda.html', {'news': news, 'titulo':titulo})
+    else:
+        repuesta = "No se ingreso ningun titulo"
+        return HttpResponse(repuesta)
+
+    
+
           
         
        
