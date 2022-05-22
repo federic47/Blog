@@ -14,8 +14,11 @@
 <form method="post">{% csrf_token %}
     Estas seguro que deseas borrar la noticia Sobre Cultura "{{ object }}"?
     <input type="submit" value="SI">
-
 </form>
+<p>
+    <a href="{% url 'inicio' %}">REGRESAR</a>
+</p>
+
 
 
 {% endblock%}

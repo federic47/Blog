@@ -13,6 +13,9 @@ from AppBlog.forms import NewsFormulario
 def inicio(request):
     return render(request,'AppBlog/inicio.html')
 
+#---------Definimos la views de About---------------------#
+def about(request):
+    return render(request,'AppBlog/about.html')
 
 #-----------Defino la vista de formulario -----------------#
 def newsFormulario(request):

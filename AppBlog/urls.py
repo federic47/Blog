@@ -10,6 +10,8 @@ urlpatterns = [
     path('busquedaNews/', busquedaNews, name='busquedaNews'),
     path('buscar/', buscar, name='buscar'),
 
+    path('about/', about , name='about'),
+
     path('culture/list/',CultureList.as_view(),name ='culture_listar' ),
     path('new/<pk>', CultureDetalle.as_view(), name='culture_detalle'),
     path('new/nuevo/', CultureCreacion.as_view(), name='culture_crear'),
