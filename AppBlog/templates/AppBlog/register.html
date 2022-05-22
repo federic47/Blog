@@ -1,0 +1,23 @@
+{% extends "AppBlog/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<h1 style="color:white">Registro de Usuarios</h1>
+
+{% endblock %}
+
+{% block cuerpo %}
+
+<form method="post">{% csrf_token %}
+
+    {{ formulario.as_p}}
+    <button type="submit">Registrarme!</button>
+
+</form>
+
+<h2> {{username}}</h2>
+
+
+{% endblock%}

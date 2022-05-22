@@ -5,7 +5,12 @@ from django .views.generic.edit import CreateView,UpdateView,DeleteView
 from django.urls import reverse_lazy
 from django.shortcuts import render
 from .models import *
-from AppBlog.forms import NewsFormulario
+from AppBlog.forms import NewsFormulario,UserRegistrationForm
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -16,6 +21,41 @@ def inicio(request):
 #---------Definimos la views de About---------------------#
 def about(request):
     return render(request,'AppBlog/about.html')
+
+#----------Definimos la views de Login---------------------#
+def login_request(request):
+    if request.method == 'POST':
+        formulario = AuthenticationForm(request=request, data=request.POST)
+        if formulario.is_valid():
+            usuario=formulario.cleaned_data.get('username')
+            clave=formulario.cleaned_data.get('password')
+            user=authenticate(username=usuario, password=clave)
+
+            if user is not None:
+                login(request, user)
+                return render(request, 'AppBlog/inicio.html', {'usuario':usuario, 'mensaje':'Bienvenido al sistema'})
+            else:
+                return render(request, 'AppBlog/login.html', {'formulario':formulario, 'mensaje':'USUARIO INCORRECTO, VUELVA A LOGUEAR'})
+        else:
+            return render(request, 'AppBlog/login.html', {'formulario':formulario, 'mensaje':'FORMULARIO INVALIDO, VUELVA A LOGUEAR'})
+    
+    else:
+        formulario=AuthenticationForm()
+        return render(request, 'AppBlog/login.html', {'formulario':formulario})
+
+#------------------------------Definimos la views de register--------------------------#
+def register(request):
+    if request.method == 'POST':
+        formulario = UserRegistrationForm(request.POST)
+        if formulario.is_valid():
+            username=formulario.cleaned_data['username']
+            formulario.save()
+            return render(request, 'AppBlog/inicio.html', {'mensaje':f'USUARIO: {username} CREADO EXITOSAMENTE'})
+        
+    else:
+        formulario = UserRegistrationForm()
+        return render(request, 'AppBlog/register.html', {'formulario':formulario})
+
 
 #-----------Defino la vista de formulario -----------------#
 def newsFormulario(request):
@@ -36,8 +76,6 @@ def newsFormulario(request):
 #*******************************************************************************
 def busquedaNews(request):
     return render(request, 'AppBlog/BusquedaNews.html') 
-
-
 
 
 def buscar(request):

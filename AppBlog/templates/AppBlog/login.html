@@ -1,0 +1,23 @@
+{% extends "AppBlog/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<h1 style="color:white">Bienvenidos al Login </h1>
+
+{% endblock %}
+
+
+{% block cuerpo %}
+<br>
+<form method="post">{% csrf_token %}
+
+    {{ formulario.as_p}}
+    <input type="submit" value="INICIAR SESION">
+
+</form>
+
+<h2>{{mensaje}}</h2>
+
+{% endblock%}
