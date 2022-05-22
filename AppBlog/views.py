@@ -23,7 +23,7 @@ def newsFormulario(request):
           
           if miFormulario.is_valid():
               informacion = miFormulario.changed_data
-              new = News(titulo=informacion['titulo'], subtitulo=informacion['subtitulo'], cuerpo=informacion['cuerpo'], autor=informacion['autor'], fecha=informacion['fecha'])
+              new = Culture(titulo=informacion['titulo'], subtitulo=informacion['subtitulo'], cuerpo=informacion['cuerpo'], autor=informacion['autor'], fecha=informacion['fecha'])
               new.save()
               return render(request,'AppBlog/inicio.html')
     else:
@@ -34,10 +34,13 @@ def newsFormulario(request):
 def busquedaNews(request):
     return render(request, 'AppBlog/BusquedaNews.html') 
 
+
+
+
 def buscar(request):
     if request.GET['titulo']:
         titulo = request.GET['titulo']
-        news = News.objects.filter(titulo=titulo)
+        news = Culture.objects.filter(titulo=titulo)
         return render (request,'AppBlog/resultadosBusqueda.html', {'news': news, 'titulo':titulo})
     else:
         repuesta = "No se ingreso ningun titulo"
@@ -61,25 +64,25 @@ def buscar(request):
 
 
 #*************************Clases basadas en Vistas********************#
-class NewsList(ListView):
-    model = News
-    template_name = 'AppBlog/news_list.html'
+class CultureList(ListView):
+    model = Culture
+    template_name = 'AppBlog/culture_list.html'
 
-class NewsDetalle(DetailView):
-    model = News
-    template_name = 'AppBlog/news_detalle.html'
+class CultureDetalle(DetailView):
+    model = Culture
+    template_name = 'AppBlog/culture_detalle.html'
 
-class NewsCreacion(CreateView):
-    model = News
-    success_url= reverse_lazy('new_listar')
+class CultureCreacion(CreateView):
+    model = Culture
+    success_url= reverse_lazy('culture_listar')
     fields= ['titulo','subtitulo','cuerpo','autor','fecha']
 
-class NewsEdicion(UpdateView):
-    model = News
-    success_url= reverse_lazy('new_listar')
+class CultureEdicion(UpdateView):
+    model = Culture
+    success_url= reverse_lazy('culture_listar')
     fields= ['titulo','subtitulo','cuerpo','autor','fecha']
 
-class NewsEliminacion(DeleteView):
-    model = News
-    success_url= reverse_lazy('new_listar')
+class CultureEliminacion(DeleteView):
+    model = Culture
+    success_url= reverse_lazy('culture_listar')
     fields= ['titulo','subtitulo','cuerpo','autor','fecha']

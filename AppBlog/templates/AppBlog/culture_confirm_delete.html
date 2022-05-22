@@ -1,0 +1,23 @@
+{% extends "AppBlog/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<h1 style="color:white">Confirmando la Eliminacion de la noticia de Cultura</h1>
+
+{% endblock %}
+
+{% block cuerpo %}
+
+
+<form method="post">{% csrf_token %}
+    Estas seguro que deseas borrar la noticia Sobre Cultura "{{ object }}"?
+    <input type="submit" value="SI">
+
+</form>
+
+
+{% endblock%}
+
+

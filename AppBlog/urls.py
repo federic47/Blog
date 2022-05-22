@@ -10,10 +10,10 @@ urlpatterns = [
     path('busquedaNews/', busquedaNews, name='busquedaNews'),
     path('buscar/', buscar, name='buscar'),
 
-    path('new/list/',NewsList.as_view(),name ='new_listar' ),
-    path('new/<pk>', NewsDetalle.as_view(), name='new_detalle'),
-    path('new/nuevo/', NewsCreacion.as_view(), name='new_crear'),
-    path('new/editar/<pk>',NewsEdicion.as_view(), name='new_editar'),
-    path('new/borrar/<pk>',NewsEliminacion.as_view(), name='new_borrar'),
+    path('culture/list/',CultureList.as_view(),name ='culture_listar' ),
+    path('new/<pk>', CultureDetalle.as_view(), name='culture_detalle'),
+    path('new/nuevo/', CultureCreacion.as_view(), name='culture_crear'),
+    path('new/editar/<pk>',CultureEdicion.as_view(), name='culture_editar'),
+    path('new/borrar/<pk>',CultureEliminacion.as_view(), name='culture_borrar'),
 
 ]

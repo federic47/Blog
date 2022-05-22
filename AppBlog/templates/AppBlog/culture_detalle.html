@@ -1,0 +1,24 @@
+{% extends "AppBlog/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<h1 style="color:white">Listando los detalles</h1>
+
+{% endblock %}
+
+{% block cuerpo %}
+
+<p>TITULO : <i>{{culture.titulo}}</i></p>
+<p>SUBTITULO : <i>{{culture.subtitulo}}</i></p>
+<p>CUERPO : <i>{{culture.cuerpo}}</i></p>
+<p>AUTOR : <i>{{culture.autor}}</i></p>
+<p>FECHA : <i>{{culture.fecha}}</i></p>
+
+<p>
+    <a href="{% url 'culture_listar' %}">REGRESAR</a>
+</p>
+
+
+{% endblock %}
