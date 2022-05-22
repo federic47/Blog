@@ -23,8 +23,16 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
+
+                {% if not request.user.is_authenticated %}
                 <a class="btn btn-primary btn-xl" href="{% url 'login' %}">Iniciar Sesion</a>
                 <a class="btn btn-primary btn-xl" href="{% url 'register' %}">Registrarme</a>
+                {% else %}
+                <p style="color: white">{{user}}</p>
+                <a class="btn btn-primary " href="{% url 'logout' %}">CERRAR SESION</a>
+                {% endif %}
+
+                
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">

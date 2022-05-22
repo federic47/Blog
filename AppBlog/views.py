@@ -57,6 +57,10 @@ def register(request):
         return render(request, 'AppBlog/register.html', {'formulario':formulario})
 
 
+#----------------------------Defino la views de Logout ------------------------------------------------------ 35
+
+
+
 #-----------Defino la vista de formulario -----------------#
 def newsFormulario(request):
 
@@ -105,6 +109,8 @@ def buscar(request):
 
 
 #*************************Clases basadas en Vistas********************#
+
+#--------------------------Clase Culture------------------------------#
 class CultureList(ListView):
     model = Culture
     template_name = 'AppBlog/culture_list.html'
@@ -127,3 +133,5 @@ class CultureEliminacion(DeleteView):
     model = Culture
     success_url= reverse_lazy('culture_listar')
     fields= ['titulo','subtitulo','cuerpo','autor','fecha']
+
+#--------------------------Clase Sport------------------------------#

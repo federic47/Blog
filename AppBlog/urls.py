@@ -14,6 +14,7 @@ urlpatterns = [
     path('about/', about , name='about'),
     path('login', login_request, name='login'),
     path('register',register, name='register'),
+    path('logout', LogoutView.as_view(template_name="AppBlog/logout.html"), name='logout'),
 
     path('culture/list/',CultureList.as_view(),name ='culture_listar' ),
     path('new/<pk>', CultureDetalle.as_view(), name='culture_detalle'),
