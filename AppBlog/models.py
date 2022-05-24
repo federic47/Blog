@@ -1,5 +1,6 @@
 from pyexpat import model
 from django.db import models
+from django.contrib.auth.models import User
 
 # ***************Model Noticia************************#
 class Culture(models.Model):
@@ -40,4 +41,6 @@ class Economy(models.Model):
     def __str__(self):
         return self.titulo +"---"+self.autor+"---"+str(self.fecha)
 
-
+class Avatar(models.Model):
+    user=models.ForeignKey(User, on_delete=models.CASCADE)
+    avatar= models.ImageField(upload_to='avatar', blank=True, null=True)

@@ -4,25 +4,23 @@
 
 {% block titulo %}
 
-<h2 style="color:white">EDITANDO PERFIL DE USUARIO</h2>
+<h2 style="color:white">Agregando Avatar</h2>
 <h2 style ="color: white">{{mensaje}} </h2>
 
 {% endblock %}
 
 {% block cuerpo %}
 
-<h1>Hola Bienvenido al Blog  {{usuario}}!</h1>
+<h2>AGREGANDO AVATAR DE {{usuario}}</h2>
 
-<form action="{% url 'editarPerfil'  %}" method="post">{% csrf_token %}
+<form action="{% url 'agregarAvatar'  %}" method="post" enctype="multipart/form-data">{% csrf_token %}
 
     <table>
         {{ formulario.as_table}}
     </table>
 
-    <input type="submit" value="GUARDAR">
+    <input type="submit" value="Agregar">
 
 </form>
-
-
 
 {% endblock%}

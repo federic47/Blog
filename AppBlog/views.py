@@ -5,7 +5,7 @@ from django .views.generic.edit import CreateView,UpdateView,DeleteView
 from django.urls import reverse_lazy
 from django.shortcuts import render
 from .models import *
-from AppBlog.forms import NewsFormulario,UserRegistrationForm, UserEditForm
+from AppBlog.forms import NewsFormulario,UserRegistrationForm, UserEditForm,AvatarForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
@@ -74,6 +74,25 @@ def editarPerfil(request):
     else:
         formulario=UserEditForm(instance=usuario)
     return render(request, 'AppBlog/editarPerfil.html', {'formulario':formulario, 'usuario':usuario.username})
+
+
+#---------------------------------------Agregando Avatar--------------------------------------------------##
+@login_required
+def agregarAvatar(request):
+    user=User.objects.get(username=request.user)
+    if request.method == 'POST':
+        formulario=AvatarForm(request.POST, request.FILES)
+        if formulario.is_valid():
+
+            avatarViejo=Avatar.objects.get(user=request.user)
+            if(avatarViejo.avatar):
+                avatarViejo.delete()
+            avatar=Avatar(user=user, avatar=formulario.cleaned_data['avatar'])
+            avatar.save()
+            return render(request, 'AppCoder/inicio.html', {'usuario':user, 'mensaje':'AVATAR AGREGADO EXITOSAMENTE'})
+    else:
+        formulario=AvatarForm()
+    return render(request, 'AppCoder/agregarAvatar.html', {'formulario':formulario, 'usuario':user})
 
 
 
