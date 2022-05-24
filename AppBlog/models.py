@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.db import models
 
 # ***************Model Noticia************************#
@@ -7,7 +8,7 @@ class Culture(models.Model):
     cuerpo = models.CharField(max_length=150)
     autor = models.CharField(max_length=50)
     fecha = models.DateTimeField(max_length=50)
-    #imagen = models.ImageField()
+    imagen = models.ImageField(upload_to='posteo', blank=True, null=True)
 
 
     def __str__(self):
@@ -20,7 +21,7 @@ class Sports(models.Model):
     cuerpo = models.CharField(max_length=150)
     autor = models.CharField(max_length=50)
     fecha = models.DateTimeField(max_length=50)
-    #imagen = models.ImageField()
+    imagen = models.ImageField(upload_to='posteo', blank=True, null=True)
 
 
     def __str__(self):
@@ -33,8 +34,10 @@ class Economy(models.Model):
     cuerpo = models.CharField(max_length=150)
     autor = models.CharField(max_length=50)
     fecha = models.DateTimeField(max_length=50)
-    #imagen = models.ImageField()
+    imagen = models.ImageField(upload_to='posteo', blank=True, null=True)
 
 
     def __str__(self):
         return self.titulo +"---"+self.autor+"---"+str(self.fecha)
+
+

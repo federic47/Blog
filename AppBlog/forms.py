@@ -9,6 +9,7 @@ class NewsFormulario(forms.Form):
     cuerpo = models.CharField(max_length=150)
     autor = models.CharField(max_length=50)
     fecha = models.DateTimeField(max_length=50)
+    imagen= models.ImageField(upload_to='posteo', blank=True, null=True)
 
 
 class UserRegistrationForm(UserCreationForm):
@@ -18,4 +19,19 @@ class UserRegistrationForm(UserCreationForm):
     class Meta:
         model=User
         fields=('username', 'email', 'password1', 'password2')
+        help_texts={campito:"" for campito in fields}
+
+
+class UserEditForm(UserCreationForm):
+    email= forms.EmailField(required=True)
+    password1= forms.CharField(label="Modificar Contraseña", widget=forms.PasswordInput)
+    password2= forms.CharField(label="Confirmar contraseña", widget=forms.PasswordInput)
+
+    last_name= forms.CharField(label="Modificar Apellido")
+    first_name= forms.CharField(label="Modificar Nombre")
+
+
+    class Meta:
+        model=User
+        fields=('email', 'password1', 'password2', 'last_name', 'first_name')
         help_texts={campito:"" for campito in fields}
