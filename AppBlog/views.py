@@ -115,6 +115,10 @@ def enviarMensaje(request):
 
 #-----------------------------------vista de Buscar mensaje por usuario -----------------------------------------------------#
 
+def buscarMensajes(request):
+    usuario=request.user
+    mensajes= Mensaje.objects.all()
+    return render(request,'AppBlog/resultadosMensajes.html',{'mensajes': mensajes,'usuario':usuario})
 
 
 

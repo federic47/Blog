@@ -13,6 +13,7 @@ urlpatterns = [
     path('editarPerfil', editarPerfil, name='editarPerfil'),
     path('agregarAvatar', agregarAvatar, name='agregarAvatar'),
     path('enviarMensaje', enviarMensaje, name='enviarMensaje'),
+    path('buscarMensaje', buscarMensajes, name='buscarMensajes'),
 
     path('culture/list/',CultureList.as_view(),name ='culture_listar' ),
     path('new/<pk>', CultureDetalle.as_view(), name='culture_detalle'),

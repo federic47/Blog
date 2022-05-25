@@ -1,0 +1,40 @@
+{% extends "AppBlog/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<h2 style="color:white">Resultados de busqueda de mensajes</h2>
+
+{% endblock %}
+
+{% block cuerpo %}
+
+<h2 style="color: red"> Benvenidos a los mensajes de {{usuario}}</h2>
+
+{% if mensajes %}
+
+
+
+{% for mensaje in mensajes %}
+    
+    
+
+    <p>USUARIO : <i>{{mensaje.usuario}}</i></p>
+    <p>ASUNTO : <i>{{mensaje.asunto}}</i></p>
+    <p>CUERPO : <i>{{mensaje.campo}}</i></p>
+
+    
+
+
+{% endfor %}
+
+
+
+{% else %}
+
+<h2 style="color: red">No Posee Mensajes nuevos {{usuario}} </h2>
+
+{% endif %}
+
+{% endblock%}

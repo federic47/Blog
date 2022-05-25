@@ -42,5 +42,5 @@ class AvatarForm(forms.Form):
 class MensajeForm(forms.Form):
     usuario= forms.CharField(max_length=50)
     asunto = forms.CharField(max_length=50)
-    campo= forms.CharField(max_length=50)
+    campo= forms.CharField(max_length=250)
 

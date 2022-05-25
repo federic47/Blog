@@ -45,7 +45,7 @@
                         {% if not request.user.is_authenticated %}
                         <a class="btn btn-primary btn-xl" href="{% url 'login' %}">Centro de Mensajes</a>
                         {% else %}
-                        <a class="btn btn-primary btn-xl" href="#">Ver Mensajes</a>
+                        <a class="btn btn-primary btn-xl" href="{% url 'buscarMensajes' %}">Ver Mensajes</a>
                         <a class="btn btn-primary btn-xl" href="{% url 'enviarMensaje' %}">Enviar Mensaje</a>
                         {% endif %}
 
