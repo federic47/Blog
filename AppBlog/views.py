@@ -14,15 +14,16 @@ from django.contrib.auth.decorators import login_required
 
 
 
-#--------Definimos la views de inicio------------------#
+#--------Definimos la views de inicio-----------------------------------------------------#
 def inicio(request):
     return render(request,'AppBlog/inicio.html')
 
-#---------Definimos la views de About---------------------#
+#---------Definimos la views de About-----------------------------------------------------#
 def about(request):
     return render(request,'AppBlog/about.html')
 
-#----------Definimos la views de Login---------------------#
+#----------Definimos la views de Login----------------------------------------------------#
+
 def login_request(request):
     if request.method == 'POST':
         formulario = AuthenticationForm(request=request, data=request.POST)
@@ -43,7 +44,8 @@ def login_request(request):
         formulario=AuthenticationForm()
         return render(request, 'AppBlog/login.html', {'formulario':formulario})
 
-#------------------------------Definimos la views de register--------------------------#
+#------------------------------Definimos la views de register-----------------------------------------------------------------#
+
 def register(request):
     if request.method == 'POST':
         formulario = UserRegistrationForm(request.POST)
@@ -56,7 +58,8 @@ def register(request):
         formulario = UserRegistrationForm()
         return render(request, 'AppBlog/register.html', {'formulario':formulario})
 
-#--------------------------------------Definimos la views de editar el perfil-------------------------------------
+#--------------------------------------Definimos la views de editar el perfil-------------------------------------#
+
 @login_required
 def editarPerfil(request):
     usuario=request.user
@@ -76,7 +79,7 @@ def editarPerfil(request):
     return render(request, 'AppBlog/editarPerfil.html', {'formulario':formulario, 'usuario':usuario.username})
 
 
-#---------------------------------------Agregando Avatar--------------------------------------------------##
+#---------------------------------------Agregando Avatar------------------------------------------------------#
 @login_required
 def agregarAvatar(request):
     user=User.objects.get(username=request.user)
@@ -87,12 +90,13 @@ def agregarAvatar(request):
             avatarViejo=Avatar.objects.get(user=request.user)
             if(avatarViejo.avatar):
                 avatarViejo.delete()
+            
             avatar=Avatar(user=user, avatar=formulario.cleaned_data['avatar'])
             avatar.save()
-            return render(request, 'AppCoder/inicio.html', {'usuario':user, 'mensaje':'AVATAR AGREGADO EXITOSAMENTE'})
+            return render(request, 'AppBlog/inicio.html', {'usuario':user, 'mensaje':'AVATAR AGREGADO EXITOSAMENTE'})
     else:
         formulario=AvatarForm()
-    return render(request, 'AppCoder/agregarAvatar.html', {'formulario':formulario, 'usuario':user})
+    return render(request, 'AppBlog/agregarAvatar.html', {'formulario':formulario, 'usuario':user})
 
 
 

@@ -11,6 +11,8 @@
 
 {% block cuerpo %}
 <br>
+<h3 style="color:red"> Ingrese sus credenciales de Acceso. </h3>
+<hr>
 <form method="post">{% csrf_token %}
 
     {{ formulario.as_p}}

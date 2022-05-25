@@ -5,4 +5,4 @@ from .models import *
 admin.site.register(Culture)
 admin.site.register(Sports)
 admin.site.register(Economy)
-
+admin.site.register(Avatar)

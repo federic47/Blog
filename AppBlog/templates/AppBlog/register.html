@@ -9,15 +9,15 @@
 {% endblock %}
 
 {% block cuerpo %}
-
+<br>
+<h3 style="color:red">Bienvenidos al sistema de Registro</h3>
+<hr>
 <form method="post">{% csrf_token %}
 
     {{ formulario.as_p}}
     <button type="submit">Registrarme!</button>
 
 </form>
-
-
 
 
 {% endblock%}
