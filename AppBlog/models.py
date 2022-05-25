@@ -44,3 +44,9 @@ class Economy(models.Model):
 class Avatar(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
     avatar= models.ImageField(upload_to='avatar', blank=True, null=True)
+
+
+class Mensaje(models.Model):
+    usuario = models.CharField(max_length=50)
+    asunto = models.CharField(max_length=50)
+    campo = models.CharField(max_length=50)

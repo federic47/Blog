@@ -5,7 +5,7 @@ from django .views.generic.edit import CreateView,UpdateView,DeleteView
 from django.urls import reverse_lazy
 from django.shortcuts import render
 from .models import *
-from AppBlog.forms import NewsFormulario,UserRegistrationForm, UserEditForm,AvatarForm
+from AppBlog.forms import NewsFormulario,UserRegistrationForm, UserEditForm,AvatarForm,MensajeForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
@@ -98,7 +98,19 @@ def agregarAvatar(request):
         formulario=AvatarForm()
     return render(request, 'AppBlog/agregarAvatar.html', {'formulario':formulario, 'usuario':user})
 
+#-----------------------------------Vista de Formulario de mensajes-----------------------#
+def enviarMensaje(request):
+    if request.method == 'POST':
+        formulario = MensajeForm(request.POST)
 
+        if formulario.is_valid():
+            informacion = formulario.cleaned_data
+            mensaje = Mensaje(usuario = informacion['usuario'], asunto= informacion['asunto'], cuerpo=informacion['cuerpo'])
+            mensaje.save()
+            return render(request, 'AppBlog/inicio.html',{'formulario':formulario, 'mensaje':'Mensaje enviado Exitosamente'})
+    else:
+        formulario =MensajeForm()
+    return render(request, 'AppBlog/enviarMensaje.html', {'formulario':formulario})
 
 
 
