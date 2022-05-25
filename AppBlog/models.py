@@ -50,3 +50,6 @@ class Mensaje(models.Model):
     usuario = models.CharField(max_length=50)
     asunto = models.CharField(max_length=50)
     campo = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.usuario

@@ -39,15 +39,14 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
                         <a class="btn btn-primary btn-xl" href="{% url 'about'%}">About</a>
-                        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+                       
 
 
                         {% if not request.user.is_authenticated %}
-                        <a class="btn btn-primary btn-xl" href="#">Centro de Mensajes</a>
+                        <a class="btn btn-primary btn-xl" href="{% url 'login' %}">Centro de Mensajes</a>
                         {% else %}
-                        <a class="btn btn-primary btn-xl" href="#">Ver mensajes</a>
-                        <a class="btn btn-primary btn-xl" href="{% url 'enviarMensaje'%}">Enviar Mensaje</a>
+                        <a class="btn btn-primary btn-xl" href="#">Ver Mensajes</a>
+                        <a class="btn btn-primary btn-xl" href="{% url 'enviarMensaje' %}">Enviar Mensaje</a>
                         {% endif %}
 
                     </ul>

@@ -14,15 +14,15 @@ from django.contrib.auth.decorators import login_required
 
 
 
-#--------Definimos la views de inicio-----------------------------------------------------#
+#--------Definimos la views de inicio-----------------------------------------------------------------------------------#
 def inicio(request):
     return render(request,'AppBlog/inicio.html')
 
-#---------Definimos la views de About-----------------------------------------------------#
+#---------Definimos la views de About-----------------------------------------------------------------------------------#
 def about(request):
     return render(request,'AppBlog/about.html')
 
-#----------Definimos la views de Login----------------------------------------------------#
+#----------Definimos la views de Login----------------------------------------------------------------------------------#
 
 def login_request(request):
     if request.method == 'POST':
@@ -44,7 +44,7 @@ def login_request(request):
         formulario=AuthenticationForm()
         return render(request, 'AppBlog/login.html', {'formulario':formulario})
 
-#------------------------------Definimos la views de register-----------------------------------------------------------------#
+#------------------------------Definimos la views de register------------------------------------------------------------------------#
 
 def register(request):
     if request.method == 'POST':
@@ -58,7 +58,7 @@ def register(request):
         formulario = UserRegistrationForm()
         return render(request, 'AppBlog/register.html', {'formulario':formulario})
 
-#--------------------------------------Definimos la views de editar el perfil-------------------------------------#
+#--------------------------------------Definimos la views de editar el perfil-------------------------------------------------------#
 
 @login_required
 def editarPerfil(request):
@@ -79,7 +79,7 @@ def editarPerfil(request):
     return render(request, 'AppBlog/editarPerfil.html', {'formulario':formulario, 'usuario':usuario.username})
 
 
-#---------------------------------------Agregando Avatar------------------------------------------------------#
+#---------------------------------------Agregando Avatar---------------------------------------------------------------------------#
 @login_required
 def agregarAvatar(request):
     user=User.objects.get(username=request.user)
@@ -99,22 +99,36 @@ def agregarAvatar(request):
     return render(request, 'AppBlog/agregarAvatar.html', {'formulario':formulario, 'usuario':user})
 
 #-----------------------------------Vista de Formulario de mensajes-----------------------#
+
 def enviarMensaje(request):
     if request.method == 'POST':
         formulario = MensajeForm(request.POST)
 
         if formulario.is_valid():
             informacion = formulario.cleaned_data
-            mensaje = Mensaje(usuario = informacion['usuario'], asunto= informacion['asunto'], cuerpo=informacion['cuerpo'])
+            mensaje = Mensaje(usuario = informacion['usuario'], asunto= informacion['asunto'], campo=informacion['campo'])
             mensaje.save()
             return render(request, 'AppBlog/inicio.html',{'formulario':formulario, 'mensaje':'Mensaje enviado Exitosamente'})
     else:
         formulario =MensajeForm()
     return render(request, 'AppBlog/enviarMensaje.html', {'formulario':formulario})
 
+#-----------------------------------vista de Buscar mensaje por usuario -----------------------------------------------------#
 
 
-#-----------Defino la vista de formulario -----------------#
+
+
+
+
+
+
+
+
+
+
+
+#------------------------------Defino la vista de formulario Culture ------------------------------------------------------------------------------#
+
 def newsFormulario(request):
 
     if request.method == 'POST':
@@ -130,19 +144,12 @@ def newsFormulario(request):
         miFormulario= NewsFormulario()
     return render(request,'AppBlog/newsFormulario.html', {'miFormulario': miFormulario})
 
-#*******************************************************************************
-def busquedaNews(request):
-    return render(request, 'AppBlog/BusquedaNews.html') 
+#*****************************************************************************************************************************
 
 
-def buscar(request):
-    if request.GET['titulo']:
-        titulo = request.GET['titulo']
-        news = Culture.objects.filter(titulo=titulo)
-        return render (request,'AppBlog/resultadosBusqueda.html', {'news': news, 'titulo':titulo})
-    else:
-        repuesta = "No se ingreso ningun titulo"
-        return HttpResponse(repuesta)
+
+
+
 
     
 
@@ -153,17 +160,11 @@ def buscar(request):
 
 
 
+#*************************      CLASES BASADAS EN VISTAS     ***********************************************************************#
+#***********************************************************************************************************************************#
 
+#--------------------------Clase Culture------------------------------------------------------------------------------------#
 
-
-
-
-
-
-
-#*************************Clases basadas en Vistas********************#
-
-#--------------------------Clase Culture------------------------------#
 class CultureList(LoginRequiredMixin,ListView):
     model = Culture
     template_name = 'AppBlog/culture_list.html'
@@ -187,4 +188,31 @@ class CultureEliminacion(DeleteView):
     success_url= reverse_lazy('culture_listar')
     fields= ['titulo','subtitulo','cuerpo','autor','fecha','imagen']
 
-#--------------------------Clase Sport------------------------------#
+
+#--------------------------Clase Sport------------------------------------------------------------------------------------------#
+
+class SportList(LoginRequiredMixin,ListView):
+    model = Sports
+    template_name = 'AppBlog/Sports_list.html'
+
+class SportsDetalle(LoginRequiredMixin,DetailView):
+    model = Sports
+    template_name = 'AppBlog/Sports_detalle.html'
+
+class SportCreacion(CreateView):
+    model = Sports
+    success_url= reverse_lazy('Sports_listar')
+    fields= ['titulo','subtitulo','cuerpo','autor','fecha','imagen']
+
+class SportsEdicion(UpdateView):
+    model = Sports
+    success_url= reverse_lazy('Sports_listar')
+    fields= ['titulo','subtitulo','cuerpo','autor','fecha','imagen']
+
+class SportsEliminacion(DeleteView):
+    model = Sports
+    success_url= reverse_lazy('Sports_listar')
+    fields= ['titulo','subtitulo','cuerpo','autor','fecha','imagen']
+
+
+#--------------------------Clase Economy------------------------------------------#

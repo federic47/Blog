@@ -4,25 +4,17 @@
 
 {% block titulo %}
 
-<h2 style="color:white">Resultados de busqueda</h2>
+<h2 style="color:white">Resultados de busqueda de mensajes</h2>
 
 {% endblock %}
 
 {% block cuerpo %}
 
 
-<h1>Estamos buscando las noticias bajo el titulo <br>{{titulo}}</h1>
+<h2>Estamos buscando mensajes bajo el el usuario :  {{usuario}}</h2>
+<h2>{{mensajes}}</h2>
 
-{% if news %}
 
-<ul>
-{% for new in news %}
-    <li>{{new.titulo}}</li>
-    <br>
-{% endfor %}
-</ul>
-
-{% endif %}
 
 
 
