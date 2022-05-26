@@ -10,21 +10,21 @@
 
 {% block cuerpo %}
 
-<h2 style="color: red"> Benvenidos a los mensajes de {{usuario}}</h2>
+<h2 style="color: red"> Bienvenidos a los mensajes de {{usuario}}</h2>
 
 {% if mensajes %}
 
-
-
 {% for mensaje in mensajes %}
     
+    {% if mensaje.usuario == usuario %}
     
-
     <p>USUARIO : <i>{{mensaje.usuario}}</i></p>
     <p>ASUNTO : <i>{{mensaje.asunto}}</i></p>
     <p>CUERPO : <i>{{mensaje.campo}}</i></p>
+    <hr>
 
-    
+    {% endif %}
+
 
 
 {% endfor %}

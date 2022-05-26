@@ -117,6 +117,7 @@ def enviarMensaje(request):
 
 def buscarMensajes(request):
     usuario=request.user
+    usuario = str(usuario)
     mensajes= Mensaje.objects.all()
     return render(request,'AppBlog/resultadosMensajes.html',{'mensajes': mensajes,'usuario':usuario})
 
