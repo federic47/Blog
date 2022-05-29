@@ -11,6 +11,22 @@ class NewsFormulario(forms.Form):
     fecha = models.DateTimeField(max_length=50)
     imagen= models.ImageField(upload_to='posteo', blank=True, null=True)
 
+class SportsFormulario(forms.Form):
+    titulo = models.CharField(max_length=50)
+    subtitulo= models.CharField(max_length=50)
+    cuerpo = models.CharField(max_length=150)
+    autor = models.CharField(max_length=50)
+    fecha = models.DateTimeField(max_length=50)
+    imagen= models.ImageField(upload_to='posteo', blank=True, null=True)
+
+
+class EconomyFormulario(forms.Form):
+    titulo = models.CharField(max_length=50)
+    subtitulo= models.CharField(max_length=50)
+    cuerpo = models.CharField(max_length=150)
+    autor = models.CharField(max_length=50)
+    fecha = models.DateTimeField(max_length=50)
+    imagen= models.ImageField(upload_to='posteo', blank=True, null=True)
 
 class UserRegistrationForm(UserCreationForm):
     email= forms.EmailField(required=True)
@@ -43,5 +59,5 @@ class MensajeForm(forms.Form):
     usuario= forms.CharField(max_length=50)
     asunto = forms.CharField(max_length=50)
     campo= forms.CharField(max_length=250)
-    fecha = models.DateTimeField(max_length=50)
+    
 

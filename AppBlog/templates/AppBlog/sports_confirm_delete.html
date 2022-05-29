@@ -1,0 +1,26 @@
+{% extends "AppBlog/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<h2 style="color:white">Confirmando la Eliminacion de la noticia de Deporte</h2>
+
+{% endblock %}
+
+{% block cuerpo %}
+
+
+<form method="post">{% csrf_token %}
+    Estas seguro que deseas borrar la noticia Sobre Deporte "{{ object }}"?
+    <input type="submit" value="SI">
+</form>
+<p>
+    <a href="{% url 'inicio' %}">REGRESAR</a>
+</p>
+
+
+
+{% endblock%}
+
+

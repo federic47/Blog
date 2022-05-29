@@ -52,7 +52,5 @@ class Mensaje(models.Model):
     asunto = models.CharField(max_length=50)
     campo = models.CharField(max_length=250)
     
-    
-
     def __str__(self):
         return self.usuario 

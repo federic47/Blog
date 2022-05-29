@@ -1,0 +1,36 @@
+{% extends "AppBlog/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<h2 style="color:white">Listando Noticias de economia</h2>
+
+{% endblock %}
+
+{% block cuerpo %}
+
+{% for economy in object_list %}
+
+<li>{{economy}}</li>
+
+<button>
+    <a href="{% url 'economy_detalle' economy.id %}">DETALLE</a>
+</button>
+
+<button>
+    <a href="{% url 'economy_editar' economy.id %}">EDITAR</a>
+</button>
+
+<button>
+    <a href="{% url 'economy_borrar' economy.id %}">BORRAR</a>
+</button>
+<br>
+{% endfor %}
+
+<br>
+ <button>
+    <a href="{% url 'economy_crear' %}">CREAR</a>
+</button>
+
+{% endblock %}

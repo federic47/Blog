@@ -27,8 +27,11 @@
                 {% if not request.user.is_authenticated %}
                 <a class="btn btn-primary btn-xl" href="{% url 'login' %}">Iniciar Sesion</a>
                 <a class="btn btn-primary btn-xl" href="{% url 'register' %}">Registrarme</a>
+               
+               
                 {% else %}
-                <p style="color: white">{{user}}</p>
+
+            
                 <a class="btn btn-primary " href="{% url 'logout' %}">CERRAR SESION</a>
                 <a class="btn btn-primary" href="{% url 'editarPerfil' %}">Editar Perfil</a>
                 <a class="btn btn-primary" href="{% url 'agregarAvatar' %}">Agregar Avatar</a>
@@ -64,8 +67,9 @@
                     <div class="col-lg-8 align-self-baseline">
                         <p class="text-white-75 mb-5"></p>
                         <a class="btn btn-primary btn-xl" href="{% url 'culture_listar' %}">Noticias de Cultura</a>
-                        <a class="btn btn-primary btn-xl" href="{% url 'culture_listar' %}">Noticias de Deportes</a>
-                        <a class="btn btn-primary btn-xl" href="{% url 'culture_listar' %}">Noticias de Economia</a>
+                        <a class="btn btn-primary btn-xl" href="{% url 'sports_listar' %}">Noticias de Deportes</a>
+                        <a class="btn btn-primary btn-xl" href="{% url 'economy_listar' %}">Noticias de Economia</a>
+                        
                     </div>
                 </div>
             </div>

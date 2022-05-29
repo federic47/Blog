@@ -1,0 +1,26 @@
+{% extends "AppBlog/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<h2 style="color:white">Listando los detalles</h2>
+
+{% endblock %}
+
+{% block cuerpo %}
+
+<p>TITULO : <i>{{sports.titulo}}</i></p>
+<p>SUBTITULO : <i>{{sports.subtitulo}}</i></p>
+<p>CUERPO : <i>{{sports.cuerpo}}</i></p>
+<p>AUTOR : <i>{{sports.autor}}</i></p>
+<p>FECHA : <i>{{sports.fecha}}</i></p>
+<p>IMAGEN: <i>{{sports.imagen}}</i></p>
+
+
+<p>
+    <a href="{% url 'sports_listar' %}">REGRESAR</a>
+</p>
+
+
+{% endblock %}

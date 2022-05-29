@@ -16,8 +16,11 @@ from django.contrib.auth.decorators import login_required
 
 #--------Definimos la views de inicio-----------------------------------------------------------------------------------#
 def inicio(request):
-    return render(request,'AppBlog/inicio.html')
+        return render(request, 'AppBlog/inicio.html')
+    
 
+
+        
 #---------Definimos la views de About-----------------------------------------------------------------------------------#
 def about(request):
     return render(request,'AppBlog/about.html')
@@ -87,9 +90,7 @@ def agregarAvatar(request):
         formulario=AvatarForm(request.POST, request.FILES)
         if formulario.is_valid():
 
-            avatarViejo=Avatar.objects.get(user=request.user)
-            if(avatarViejo.avatar):
-                avatarViejo.delete()
+            
             
             avatar=Avatar(user=user, avatar=formulario.cleaned_data['avatar'])
             avatar.save()
@@ -137,34 +138,52 @@ def buscarMensajes(request):
 def newsFormulario(request):
 
     if request.method == 'POST':
-          miFormulario = NewsFormulario(request.POST)
+          miFormulario = NewsFormulario(request.POST,request.FILES)
           
           
           if miFormulario.is_valid():
               informacion = miFormulario.changed_data
-              new = Culture(titulo=informacion['titulo'], subtitulo=informacion['subtitulo'], cuerpo=informacion['cuerpo'], autor=informacion['autor'], fecha=informacion['fecha'],imagen=informacion['imagen'])
-              new.save()
-              return render(request,'AppBlog/inicio.html')
+              culture = Culture(titulo=informacion['titulo'], subtitulo=informacion['subtitulo'], cuerpo=informacion['cuerpo'], autor=informacion['autor'], fecha=informacion['fecha'],imagen=informacion['imagen'])
+              culture.save()
+              return render(request,'AppBlog/inicio.html', {'mensaje':'Post creado exitosamente'})
     else:
         miFormulario= NewsFormulario()
     return render(request,'AppBlog/newsFormulario.html', {'miFormulario': miFormulario})
 
-#*****************************************************************************************************************************
+#**************************************Defino la vista del formulario Sports**************************************
 
+def SportsFormulario(request):
 
-
-
-
-
-    
-
+    if request.method == 'POST':
+          miFormulario = SportsFormulario(request.POST,request.FILES)
           
-        
+          
+          if miFormulario.is_valid():
+              informacion = miFormulario.changed_data
+              sports = Sports(titulo=informacion['titulo'], subtitulo=informacion['subtitulo'], cuerpo=informacion['cuerpo'], autor=informacion['autor'], fecha=informacion['fecha'],imagen=informacion['imagen'])
+              sports.save()
+              return render(request,'AppBlog/inicio.html', {'mensaje':'Post creado exitosamente'})
+    else:
+        miFormulario= SportsFormulario()
+    return render(request,'AppBlog/newsFormulario.html', {'miFormulario': miFormulario})
+
+#**************************************Defino la vista del formulario Economy***********************
+def EconomyFormulario(request):
+
+    if request.method == 'POST':
+          mieconomia = EconomyFormulario(request.POST,request.FILES)
+          
+          
+          if mieconomia.is_valid():
+              informacion = mieconomia.changed_data
+              economy = Economy(titulo=informacion['titulo'], subtitulo=informacion['subtitulo'], cuerpo=informacion['cuerpo'], autor=informacion['autor'], fecha=informacion['fecha'],imagen=informacion['imagen'])
+              economy.save()
+              return render(request,'AppBlog/inicio.html', {'mensaje':'Post creado exitosamente'})
+    else:
+        miFormulario= EconomyFormulario()
+    return render(request,'AppBlog/newsFormulario.html', {'miFormulario': miFormulario})
+      
        
-    
-
-
-
 #*************************      CLASES BASADAS EN VISTAS     ***********************************************************************#
 #***********************************************************************************************************************************#
 
@@ -198,26 +217,49 @@ class CultureEliminacion(DeleteView):
 
 class SportList(LoginRequiredMixin,ListView):
     model = Sports
-    template_name = 'AppBlog/Sports_list.html'
+    template_name = 'AppBlog/sports_list.html'
 
 class SportsDetalle(LoginRequiredMixin,DetailView):
     model = Sports
-    template_name = 'AppBlog/Sports_detalle.html'
+    template_name = 'AppBlog/sports_detalle.html'
 
 class SportCreacion(CreateView):
     model = Sports
-    success_url= reverse_lazy('Sports_listar')
+    success_url= reverse_lazy('sports_listar')
     fields= ['titulo','subtitulo','cuerpo','autor','fecha','imagen']
 
 class SportsEdicion(UpdateView):
     model = Sports
-    success_url= reverse_lazy('Sports_listar')
+    success_url= reverse_lazy('sports_listar')
     fields= ['titulo','subtitulo','cuerpo','autor','fecha','imagen']
 
 class SportsEliminacion(DeleteView):
     model = Sports
-    success_url= reverse_lazy('Sports_listar')
+    success_url= reverse_lazy('sports_listar')
     fields= ['titulo','subtitulo','cuerpo','autor','fecha','imagen']
 
 
 #--------------------------Clase Economy------------------------------------------#
+
+class EconomyList(LoginRequiredMixin,ListView):
+    model = Economy
+    template_name = 'AppBlog/economy_list.html'
+
+class EconomyDetalle(LoginRequiredMixin,DetailView):
+    model = Economy
+    template_name = 'AppBlog/economy_detalle.html'
+
+class EconomyCreacion(CreateView):
+    model = Economy
+    success_url= reverse_lazy('economy_listar')
+    fields= ['titulo','subtitulo','cuerpo','autor','fecha','imagen']
+
+class EconomyEdicion(UpdateView):
+    model = Economy
+    success_url= reverse_lazy('economy_listar')
+    fields= ['titulo','subtitulo','cuerpo','autor','fecha','imagen']
+
+class EconomyEliminacion(DeleteView):
+    model = Economy
+    success_url= reverse_lazy('economy_listar')
+    fields= ['titulo','subtitulo','cuerpo','autor','fecha','imagen']

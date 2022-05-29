@@ -1,0 +1,37 @@
+{% extends "AppBlog/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<h2 style="color:white">Listando Noticias de Deportes</h2>
+
+{% endblock %}
+
+{% block cuerpo %}
+
+{% for sport in object_list %}
+
+<li>{{sport}}</li>
+
+<button>
+    <a href="{% url 'sports_detalle' sport.id %}">DETALLE</a>
+</button>
+
+<button>
+    <a href="{% url 'sports_editar' sport.id %}">EDITAR</a>
+</button>
+
+<button>
+    <a href="{% url 'sports_borrar' sport.id %}">BORRAR</a>
+</button>
+
+{% endfor %}
+<br>
+
+ <button>
+    <a href="{% url 'sports_crear' %}">CREAR</a>
+</button>
+
+{% endblock %}
+
